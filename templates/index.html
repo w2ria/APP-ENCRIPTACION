@@ -1,0 +1,79 @@
+{% extends './base.html' %}
+
+{% block title%} Index {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6">
+        <h1>Programas para encriptar</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Encriptador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enc in encrip %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>
+                            {% if enc == "Cifrado Desplazamiento Puro" %}
+                                <a href="/cifrado-desplazamiento-puro">{{ enc }}</a>
+                            {% elif enc == "encriptador 2" %}
+                                <a href="#">{{ enc }}</a>
+                            {% elif enc == "encriptador 3" %}
+                                <a href="#">{{ enc }}</a>
+                            {% elif enc == "encriptador 4" %}
+                                <a href="#">{{ enc }}</a>
+                            {% elif enc == "encriptador 5" %}
+                                <a href="#">{{ enc }}</a>
+                            {% else %}
+                                <a href="#">{{ enc }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h1>Programas para desencriptar</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Desencriptador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for denc in desencrip %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>
+                            {% if denc == "desencriptador 1" %}
+                                <a href="#">{{ denc }}</a>
+                            {% elif denc == "desencriptador 2" %}
+                                <a href="#">{{ denc }}</a>
+                            {% elif denc == "desencriptador 3" %}
+                                <a href="#">{{ denc }}</a>
+                            {% elif denc == "desencriptador 4" %}
+                                <a href="#">{{ denc }}</a>
+                            {% elif denc == "desencriptador 5" %}
+                                <a href="#">{{ denc }}</a>
+                            {% else %}
+                                <a href="#">{{ denc }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

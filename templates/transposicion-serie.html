@@ -24,6 +24,10 @@ Series{% endblock %} {% block body %}
 {% if resultado %}
 <div class="alert alert-success mt-4" role="alert">
   <h4 class="alert-heading">Resultado</h4>
-  <p>{{ resultado }}</p>
+  <p>
+    La frase '{{ texto_original }}' encriptada usando el método de Transposición
+    por Series es:
+  </p>
+  <p><strong>{{ resultado }}</strong></p>
 </div>
 {% endif %} {% endblock %}

@@ -2,6 +2,8 @@
 
 # Función para verificar si un número es primo
 def es_primo(n):
+    if n == 1:
+        return True
     if n < 2:
         return False
     for i in range(2, int(n ** 0.5) + 1):
@@ -25,10 +27,16 @@ def obtener_series(longitud):
 
 def procesar_transposicion_serie(mensaje):
     # Eliminar espacios y poner en mayúsculas el mensaje
+    mesaje_default = mensaje
+
     mensaje = mensaje.replace(" ", "").upper().replace(",", "")
     
     # Obtener las posiciones de MS1, MS2 y MS3 según la longitud del mensaje
     ms1_pos, ms2_pos, ms3_pos = obtener_series(len(mensaje))
+
+    print(ms1_pos)
+    print(ms2_pos)
+    print(ms3_pos)
     
     # Listas para almacenar los caracteres de cada serie
     ms1, ms2, ms3 = [], [], []
@@ -43,6 +51,10 @@ def procesar_transposicion_serie(mensaje):
             ms3.append(mensaje[i - 1])
     
     # Concatenar las series en el orden MS1 + MS2 + MS3
-    mensaje_cifrado = ''.join(ms1) + ''.join(ms2) + ''.join(ms3)
-    
-    return mensaje_cifrado
+    mensaje_cifrado_tmp = ''.join(ms1) + ''.join(ms2) + ''.join(ms3)
+
+    mensaje_cifrado = ' '.join(mensaje_cifrado_tmp[i:i+5] for i in range(0, len(mensaje_cifrado_tmp), 5))
+
+
+
+    return mesaje_default, mensaje_cifrado

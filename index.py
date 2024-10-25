@@ -6,7 +6,7 @@ from services.cifrado_transposicion_serie import procesar_transposicion_serie
 app = Flask(__name__)
 @app.route('/')
 def principal():
-    programasEncriptadores = ("Cifrado Desplazamiento Puro", "Algoritmo de Vernam", "encriptador 3", "encriptador 4","encriptador 5") 
+    programasEncriptadores = ("Cifrado Desplazamiento Puro", "Algoritmo de Vernam", "Transposición por serie", "encriptador 4","encriptador 5") 
     programasDesncriptadores = ("desencriptador 1", "desencriptador 2", "desencriptador 3", "desencriptador 4","desencriptador 5")
     return render_template('index.html', encrip=programasEncriptadores, desencrip=programasDesncriptadores)
 
@@ -50,13 +50,14 @@ def algoritmo_de_vernam():
 @app.route('/transposicion-serie', methods=['GET', 'POST'])
 def cifrado_transposicion_serie():
     resultado = None
+    texto_original = None
     
     if request.method == 'POST':
         texto = request.form.get('texto')
 
-        resultado = procesar_transposicion_serie(texto)
+        texto_original, resultado = procesar_transposicion_serie(texto)
     
-    return render_template('transposicion-serie.html', resultado=resultado)
+    return render_template('transposicion-serie.html', resultado=resultado, texto_original=texto_original)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5017)

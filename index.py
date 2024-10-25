@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from services.cifrado_desplazamiento_puro import procesar_cifrado_desplazamiento_puro
 from services.algoritmo_de_vernam import procesar_algoritmo_de_vernam
+from services.cifrado_transposicion_serie import procesar_transposicion_serie
 
 app = Flask(__name__)
 @app.route('/')
@@ -45,6 +46,17 @@ def algoritmo_de_vernam():
     
     return render_template('algoritmo-de-vernam.html', resultado=resultado)
 
+
+@app.route('/transposicion-serie', methods=['GET', 'POST'])
+def cifrado_transposicion_serie():
+    resultado = None
+    
+    if request.method == 'POST':
+        texto = request.form.get('texto')
+
+        resultado = procesar_transposicion_serie(texto)
+    
+    return render_template('transposicion-serie.html', resultado=resultado)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5017)

@@ -1,0 +1,29 @@
+{% extends './base.html' %} {% block title %}Cifrado por Transposición por
+Series{% endblock %} {% block body %}
+<h1>Cifrado por Transposición por Series</h1>
+<form method="POST">
+  <div class="form-group">
+    <label for="texto">Ingrese la frase a encriptar</label>
+    <input
+      type="text"
+      class="form-control"
+      id="texto"
+      name="texto"
+      aria-describedby="textoAyuda"
+      required
+    />
+    <small id="textoAyuda" class="form-text text-muted"
+      >Solo se encriptarán caracteres en el alfabeto (a-z), espacios y números
+      (0-9).</small
+    >
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+{% if resultado %}
+<div class="alert alert-success mt-4" role="alert">
+  <h4 class="alert-heading">Resultado</h4>
+  <p>{{ resultado }}</p>
+</div>
+{% endif %} {% endblock %}

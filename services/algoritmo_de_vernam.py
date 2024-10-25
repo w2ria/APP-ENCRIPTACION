@@ -2,13 +2,13 @@
 
 def procesar_algoritmo_de_vernam(texto, clave, opcion):
     alfabeto = 'abcdefghijklmnopqrstuvwxyz 0123456789'
-    
+
     # Normalizar texto y clave eliminando tildes y convirtiendo a minúsculas
     def normalizar(cadena):
         tildes = {'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
                   'Á': 'a', 'É': 'e', 'Í': 'i', 'Ó': 'o', 'Ú': 'u'}
         return ''.join(tildes.get(c.lower(), c.lower()) for c in cadena)
-    
+        
     texto_original = texto
     texto = normalizar(texto)
     clave = normalizar(clave)

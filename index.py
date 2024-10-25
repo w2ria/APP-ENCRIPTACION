@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
+from services.cifrado_desplazamiento_puro import procesar_cifrado_desplazamiento_puro
 
 app = Flask(__name__)
 @app.route('/')
@@ -15,9 +16,19 @@ def principal():
 #     return render_template('lenguajes.html', lenguajes=misLenguajes)
 
 
-@app.route('/cifrado-desplazamiento-puro')
-def contacto():
-    return render_template('cifrado-desplazamiento-puro.html')
+@app.route('/cifrado-desplazamiento-puro', methods=['GET', 'POST'])
+def cifrado_desplazamiento_puro():
+    resultado = None
+    
+    if request.method == 'POST':
+        texto = request.form.get('textoEncriptar')
+        n = int(request.form.get('valorN') or 27)
+        desplazamiento = int(request.form.get('desplazamiento') or 15)
+        ecuacion = request.form.get('ecuacion')
+
+        resultado = procesar_cifrado_desplazamiento_puro(texto, n, desplazamiento, ecuacion)
+    
+    return render_template('cifrado-desplazamiento-puro.html', resultado=resultado)
 
 
 if __name__ == '__main__':

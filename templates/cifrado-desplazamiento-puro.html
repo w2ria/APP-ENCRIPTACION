@@ -4,34 +4,41 @@
 
 {% block body %}
 <h1>Cifrado Desplazamiento Puro</h1>
-<form>
+<form method="POST">
   <div class="form-group">
       <label for="textoEncriptar">Ingrese la frase a encriptar o desencriptar</label>
-      <input type="text" class="form-control" id="textoEncriptar" aria-describedby="textoAyuda">
+      <input type="text" class="form-control" id="textoEncriptar" name="textoEncriptar" aria-describedby="textoAyuda" required>
   </div>
   
   <div class="form-group">
       <label for="valorN">Ingrese el valor de n</label>
-      <input type="number" class="form-control" id="valorN" aria-describedby="valorNAyuda" min="0" step="1">
+      <input type="number" class="form-control" id="valorN" name="valorN" aria-describedby="valorNAyuda" value="27" min="0" step="1">
       <small id="valorNAyuda" class="form-text text-muted">Si no ingresa valor alguno, se tomará por defecto n=27.</small>
   </div>
   
   <div class="form-group">
       <label for="desplazamiento">Ingrese el valor del desplazamiento</label>
-      <input type="number" class="form-control" id="desplazamiento" aria-describedby="desplazamientoAyuda" min="0" step="1">
+      <input type="number" class="form-control" id="desplazamiento" name="desplazamiento" aria-describedby="desplazamientoAyuda" value="15" min="0" step="1">
       <small id="desplazamientoAyuda" class="form-text text-muted">Si no ingresa valor alguno, se tomará por defecto b=15.</small>
   </div>
   
   <div class="form-group">
       <label for="ecuacion">Elija la ecuación</label>
-      <select class="form-control" id="ecuacion">
-          <option>CP1: Ci = (Mi + b) mod n</option>
-          <option>CP2: Mi = (Ci - b) mod n</option>
-          <option>CP3: Mi = (Ci + n - b) mod n</option>
-      </select>
+      <select class="form-control" id="ecuacion" name="ecuacion">
+        <option value="CP1">CP1: Ci = (Mi + b) mod n</option>
+        <option value="CP2">CP2: Mi = (Ci - b) mod n</option>
+        <option value="CP3">CP3: Mi = (Ci + n - b) mod n</option>
+    </select>
   </div>
   
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
+
+{% if resultado %}
+<div class="alert alert-success mt-4" role="alert">
+  <h4 class="alert-heading">Resultado</h4>
+  <p>{{ resultado }}</p>
+</div>
+{% endif %}
 
 {% endblock %}
